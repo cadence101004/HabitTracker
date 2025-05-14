@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HabitTracker</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Cherry+Cream+Soda&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="tracker-container">
+    <img src="images/gud-white.png" class="corner-img top-left" alt="Gudetama in top left">
+    <img src="images/gud-bread.png" class="corner-img top-right" alt="Gudetama in top right">
+    <img src="images/gud-arms.png" class="corner-img bottom-left" alt="Gudetama in bottom left">
+
+    <div class="cloud-wrapper">
+        <img src="images/cloud-bg.png" alt="cloud" class="cloud-img" />
+        <h1 id="month-title" class="cloud-text">Month</h1>
+      </div>      
+    <p class="subheading">Monthly Habit Tracker</p>
+    <div class="habit-controls">
+      <select id="habit-select"></select>
+      <button id="add-habit-btn">Add Habit</button>
+      <button id="reset-habit-btn">Reset This Habit</button>
+    </div>
+
+    <div class="habit-display">
+      <div class="habit-header">
+        <span id="habit-label"></span>
+        <span id="counter">0/30</span>
+      </div>
+      <div class="days" id="day-grid"></div>
+    </div>
+
+    <div class="affirmation" id="affirmation"></div>
+  </div>
+  <div id="streak-popup" class="popup-overlay hidden">
+    <div class="popup-layout">
+      <img src="images/gud-dessert.png" class="popup-gudetama" alt="Gudetama in dessert" />
+      <div class="popup-bubble-wrapper">
+        <img src="images/speech-bubble.png" class="popup-bubble" alt="Speech bubble" />
+        <p id="popup-message" class="popup-text">You're doing a great job! Keep it up!</p>
+      </div>
+      <img src="images/sparkles2.png" class="popup-sparkle top-left" />
+      <img src="images/sparkles1.png" class="popup-sparkle bottom-right" />
+      <button id="popup-close" class="popup-btn">Keep going</button>
+    </div>
+  </div>  
+
+  <script src="script.js"></script>
+</body>
+</html>
