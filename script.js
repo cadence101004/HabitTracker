@@ -14,6 +14,7 @@ const popupShownMilestones = {}; // track per habit
 const today = new Date();
 const month = today.toLocaleString("default", { month: "long" });
 monthTitle.textContent = month;
+const currentMonthIndex = today.getMonth(); // 0 = Jan, 1 = Feb, etc.
 
 // Constants
 const DAYS_IN_MONTH = 30;
@@ -32,15 +33,33 @@ const affirmations = [
 // Load from localStorage
 if (localStorage.getItem("habitData")) {
   habits = JSON.parse(localStorage.getItem("habitData"));
+
+  // Check if it's a new month
+  const savedMonth = parseInt(localStorage.getItem("lastUpdatedMonth"));
+  if (!isNaN(savedMonth) && savedMonth !== currentMonthIndex) {
+    // Reset all habits
+    Object.keys(habits).forEach(name => {
+      habits[name] = Array(DAYS_IN_MONTH).fill(false);
+    });
+
+    // Optional: show a fresh start affirmation
+    document.getElementById("affirmation").textContent = "New month, new streak! 🐣";
+  }
+
+  // Save updated month
+  localStorage.setItem("lastUpdatedMonth", currentMonthIndex);
+
   Object.keys(habits).forEach(name => {
     const option = new Option(name, name);
     habitSelect.add(option);
   });
+
   if (habitSelect.value) {
     currentHabit = habitSelect.value;
     renderHabit(currentHabit);
   }
 }
+
 
 // Handle habit switching
 habitSelect.addEventListener("change", () => {
@@ -124,7 +143,9 @@ function renderHabit(name) {
 // Save habits to localStorage
 function saveHabits() {
   localStorage.setItem("habitData", JSON.stringify(habits));
+  localStorage.setItem("lastUpdatedMonth", currentMonthIndex);
 }
+
 
 // Show random affirmation
 function showAffirmation() {
