@@ -14,6 +14,9 @@ It updates with the current month and lets you check off your daily habits with 
 ## Live Site
 [View it here](https://cadence101004.github.io/HabitTracker/)  
 
+## Figma Prototype
+[Click here to view Figma prototype](https://www.figma.com/design/YiZHGt823wdjvSbXtIa3aP/Monthly-Habit-Tracker?t=MGqkfbW2P5AKoqAN-1)
+
 ## Tech Stack
 - HTML
 - CSS
