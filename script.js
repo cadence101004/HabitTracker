@@ -152,3 +152,38 @@ function checkStreakEndingHere(arr, index) {
     document.getElementById("streak-popup").classList.add("hidden");
   });
   
+  const deleteHabitBtn = document.getElementById("delete-habit-btn");
+
+deleteHabitBtn.addEventListener("click", () => {
+  if (!currentHabit) return;
+
+  const confirmDelete = confirm(`Delete habit "${currentHabit}"? This cannot be undone.`);
+  if (!confirmDelete) return;
+
+  // Remove the habit from the object
+  delete habits[currentHabit];
+
+  // Remove the habit from the dropdown
+  [...habitSelect.options].forEach((option, index) => {
+    if (option.value === currentHabit) {
+      habitSelect.remove(index);
+    }
+  });
+
+  // Clear current view
+  // If there are still habits left, show the first one
+  if (habitSelect.options.length > 0) {
+    currentHabit = habitSelect.options[0].value;
+    habitSelect.value = currentHabit;
+    renderHabit(currentHabit);
+  } else {
+    // Otherwise, clear everything
+    currentHabit = "";
+    dayGrid.innerHTML = "";
+    habitLabel.textContent = "";
+    counter.textContent = "0/30";
+    affirmationBox.textContent = "";
+  }
+
+  saveHabits();
+});
